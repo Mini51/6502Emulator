@@ -1,67 +1,26 @@
-name: C/C++ Build and Release
+name: Release
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
-  build:
+  pre-release:
+    name: "Release"
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - uses: "actions/checkout@v3"
+    - name: "Build"
+      run: make workflow
 
-    - name: Install g++
-      run: sudo apt-get install -y g++
-
-    - name: Build project
-      run: |
-        mkdir -p build
-        g++ -o build/example src/example.cpp src/include/mos6502.cpp
-
-    - name: Archive built binary
-      uses: actions/upload-artifact@v2
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        name: example-binary
-        path: build/example
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps:
-    - name: Download built binary
-      uses: actions/download-artifact@v2
-      with:
-        name: example-binary
-        path: build
-
-    - name: Create release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v1.0.0
-        release_name: Release v1.0.0
-        body: |
-          Changes in this release:
-          - Add new features
-        draft: false
-        prerelease: false
-
-    - name: Upload release artifact
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/example
-        asset_name: example-v1.0.0-linux
-        asset_content_type: application/octet-stream
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Release"
+        files: |
+          ./mos6502
+          ./mos6502.exe
+          ./README.md
