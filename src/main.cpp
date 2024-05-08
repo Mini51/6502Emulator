@@ -1,17 +1,27 @@
-#include <iostream> 
-#include <vector>
-#include "./emulator/6502.h"
-int main( int argc, char* argv[]){ 
+#include "./include/mos6502.h"
 
-cmos6502 Cpu;
+int main(){
+    mos6502 Cpu;
 
-std::vector<uint8_t> program = {
+    std::ifstream file("./example.bin", std::ios::binary); // Open the binary ROM file
 
-};
+    if (!file) {
+        std::cerr << "Error opening ROM file." << std::endl;
+        return 1;
+    }
+    // Read the contents of the binary file into a vector
+    std::vector<uint8_t> program((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    file.close(); // Close the file after reading
 
-   Cpu.Load(program, 0x0000);
-   Cpu.RESET();
-   Cpu.Run();
+    //Load Memory with ROM file
+    Cpu.loadMemory(program);
 
-    return 0;
+    //Reset CPU to known state
+    Cpu.reset();
+
+    //Run the CPU
+    while (true) {
+        Cpu.step();
+    }
+
 }
