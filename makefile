@@ -1,42 +1,33 @@
-name: build
+name: Publish
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '*'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  publish:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: mos6502
+            asset_name: mos6502-linux-amd64
+          - os: windows-latest
+            artifact_name: mos6502.exe
+            asset_name: mos6502-windows-amd64
+
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Install g++
-      run: sudo apt-get install -y g++
-
-    - name: Build Linux binary
+    - uses: actions/checkout@v3
+    - name: Build
       run: make
-
-    - name: Upload Linux binary as release asset
-      uses: actions/upload-artifact@v2
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        name: mos6502-linux
-        path: build/mos6502
-
-  build-windows:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Build Windows binary
-      run: make
-
-    - name: Upload Windows binary as release asset
-      uses: actions/upload-artifact@v2
-      with:
-        name: mos6502-windows
-        path: build/mos6502.exe
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: target/release/${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
+        tag: ${{ github.ref }}
