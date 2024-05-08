@@ -1,18 +1,42 @@
-CXX := g++
+name: Build and Release
 
-SRC_PATH := src
-INCLUDE_PATH := src/include
-BUILD_PATH := build 
+on:
+  push:
+    branches:
+      - main
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-SOURCE_FILES := $(wildcard $(SRC_PATH)/*.cpp) $(wildcard $(INCLUDE_PATH)/*.cpp)
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-TARGET := build
+    - name: Install g++
+      run: sudo apt-get install -y g++
 
+    - name: Build Linux binary
+      run: make
 
+    - name: Upload Linux binary as release asset
+      uses: actions/upload-artifact@v2
+      with:
+        name: mos6502-linux
+        path: build/mos6502
 
-workflow:
-	@echo "compiling for linux"
-	@$(CXX) -o ${TARGET}/mos6502 $(SOURCE_FILES)
-	@echo "compiling for windows"
-	@$(CXX) -o ${TARGET}/mos6502.exe $(SOURCE_FILES)
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build Windows binary
+      run: make
+
+    - name: Upload Windows binary as release asset
+      uses: actions/upload-artifact@v2
+      with:
+        name: mos6502-windows
+        path: build/mos6502.exe
