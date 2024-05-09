@@ -1,4 +1,4 @@
-#include "./include/mos6502.h"
+#include "../include/mos6502.h"
 
 int main(){
     mos6502 Cpu;
