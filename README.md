@@ -50,5 +50,5 @@ NMI(); // Trigger an NMI
 
 ```
 
-for an example of how to use the emulator see the example.cpp file in the src directory.
+For an example of how to use the emulator see the example.cpp file in the examples directory.
 
