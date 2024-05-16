@@ -76,11 +76,11 @@ class mos6502 {
         * @param bytes The number of bytes occupied by the instruction in memory.
         */
 		struct Instruction {
-            std::string alias;
+            std::string_view alias;
 			CodeExec code;
 			AddressExec addr;
 			uint8_t cycles;
-            int bytes;
+            uint8_t bytes;
 		};
 
 
