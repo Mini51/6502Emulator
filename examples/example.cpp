@@ -1,7 +1,7 @@
 #include "../include/mos6502.h"
 
 int main(){
-    mos6502 Cpu;
+    mos6502 Cpu; 
 
     std::ifstream file("./example.bin", std::ios::binary); // Open the binary ROM file
 

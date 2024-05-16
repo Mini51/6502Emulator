@@ -1,4 +1,4 @@
-#include "./mos6502.h"
+#include "../include/mos6502.h"
 
 
 #pragma region Private functions
