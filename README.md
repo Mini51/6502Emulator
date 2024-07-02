@@ -1,14 +1,18 @@
 # 6502Emulator
-This is an emulator for the 6502 microprocessor.
 
-The emulator is written in C++ and has been tested with the [Klaus Dormann's 6502 functional test suite](github.com/Klaus2m5/6502_65C02_functional_tests/). The purpose of this emulator was to gain a better understanding of a CPU's functions as well as a way to learn C++. Due to this, the emulator is not optimized for speed and is not intended to be used in any production environment, but rather as a learning tool. Only legal opcodes are implemented due to the fact that illegal opcodes are highly unstable and can vary between different 6502 chips.
+This is an emulator for the 6502 microprocessor. The emulator is written in C++ and has been tested with the [Klaus Dormann's 6502 functional test suite](github.com/Klaus2m5/6502_65C02_functional_tests/). The purpose of this emulator was to gain a better understanding of a CPU's functions as well as a way to learn C++. Due to this, the emulator is not optimized for speed and is not intended to be used in any production environment, but rather as a learning tool. Only legal opcodes are implemented due to the fact that illegal opcodes are highly unstable and can vary between different 6502 chips.
 
-## Usage
+# Purpose
+
+This is a project that was created to help students understand how computers work. If you would like to learn more about the 6502 microprocessor, how it works, and how to write an emulator, please refer to the [Getting Started](docs/getting-started.md) guide.
+
+# Basic Usage
+
 To use this emulator library, you need to include the mos6502.h header file in your project and link the mos6502.cpp file.
 
 Below are all the public functions that can be used to interact with the emulator.
-```c++
 
+```cpp
 
 mos6502(); // constructor to initialize the emulator
 
@@ -49,6 +53,3 @@ IRQ(); // Trigger an IRQ
 NMI(); // Trigger an NMI
 
 ```
-
-For an example of how to use the emulator see the example.cpp file in the examples directory.
-
