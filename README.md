@@ -1,10 +1,10 @@
-# 6502Emulator
+# 6502 Emulator
 
-This is an emulator for the 6502 microprocessor. The emulator is written in C++ and has been tested with the [Klaus Dormann's 6502 functional test suite](github.com/Klaus2m5/6502_65C02_functional_tests/). The purpose of this emulator was to gain a better understanding of a CPU's functions as well as a way to learn C++. Due to this, the emulator is not optimized for speed and is not intended to be used in any production environment, but rather as a learning tool. Only legal opcodes are implemented due to the fact that illegal opcodes are highly unstable and can vary between different 6502 chips.
+This project is an emulator for the 6502 microprocessor, developed in C++. It has been thoroughly tested using [Klaus Dormann's 6502 functional test suite](https://github.com/Klaus2m5/6502_65C02_functional_tests/). The primary aim of this emulator is to deepen understanding of CPU operations and to serve as a learning exercise for C++ programming. As such, the emulator is not optimized for speed and is not intended for production use. It supports only legal opcodes, as illegal opcodes can be unstable and vary between different 6502 chips.
 
-# Purpose
+## Purpose
 
-This is a project that was created to help students understand how computers work. If you would like to learn more about the 6502 microprocessor, how it works, and how to write an emulator, please refer to the [Getting Started](docs/getting-started.md) guide.
+This project aims to help students grasp the fundamentals of how computers operate. For those interested in learning more about the 6502 microprocessor, its workings, and how to write an emulator, please refer to our [Getting Started](docs/getting-started.md) guide.
 
 # Basic Usage
 
