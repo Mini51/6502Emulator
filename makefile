@@ -4,11 +4,11 @@ BUILD_DIR := build
 CXXFLAGS := -std=c++11
 
 # Build targets
-all: $(BUILD_DIR)/My6502Executable
+all: $(BUILD_DIR)/Example6502
 
 # Link the executable
-$(BUILD_DIR)/My6502Executable: $(BUILD_DIR)/example.o $(BUILD_DIR)/mos6502.o
-	$(CXX) $(CXXFLAGS) $(BUILD_DIR)/example.o $(BUILD_DIR)/mos6502.o -o $(BUILD_DIR)/My6502Executable
+$(BUILD_DIR)/Example6502: $(BUILD_DIR)/example.o $(BUILD_DIR)/mos6502.o
+	$(CXX) $(CXXFLAGS) $(BUILD_DIR)/example.o $(BUILD_DIR)/mos6502.o -o $(BUILD_DIR)/Example6502
 
 # Compile example.cpp to example.o
 $(BUILD_DIR)/example.o: examples/example.cpp

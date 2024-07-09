@@ -6,6 +6,26 @@ This project is an emulator for the 6502 microprocessor, developed in C++. It ha
 
 This project aims to help students grasp the fundamentals of how computers operate. For those interested in learning more about the 6502 microprocessor, its workings, and how to write an emulator, please refer to our [Getting Started](docs/getting-started.md) guide.
 
+# Installation
+
+## Installing the library in your project
+
+To use this library in your project you can clone the repository and place it in your include directory. Once you have done that, you can include the mos6502.h header file in your project and link the mos6502.cpp file.
+
+## Installing the example project
+
+This project comes with an example program that uses the emulator library and is used in the guide I have written to help people get started with microprocessors and assembly programming. To install the example project, run the following commands:
+
+```bash
+git clone https://github.com/Mini51/6502Emulator.git
+
+cd 6502Emulator
+
+make
+```
+
+This will make an executable file called `example` in the `build` directory. To learn more about the 6502 and how to use this library, please refer to the [Getting Started](docs/getting-started.md) guide.
+
 # Basic Usage
 
 To use this emulator library, you need to include the mos6502.h header file in your project and link the mos6502.cpp file.
