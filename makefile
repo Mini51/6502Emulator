@@ -1,18 +1,25 @@
-CXX := g++
+# Directory for build outputs
+BUILD_DIR := build
 
-SRC_PATH := src
-INCLUDE_PATH := src/include
-BUILD_PATH := build 
+CXXFLAGS := -std=c++11
 
+# Build targets
+all: $(BUILD_DIR)/My6502Executable
 
-SOURCE_FILES := $(wildcard $(SRC_PATH)/*.cpp) $(wildcard $(INCLUDE_PATH)/*.cpp)
+# Link the executable
+$(BUILD_DIR)/My6502Executable: $(BUILD_DIR)/example.o $(BUILD_DIR)/mos6502.o
+	$(CXX) $(CXXFLAGS) $(BUILD_DIR)/example.o $(BUILD_DIR)/mos6502.o -o $(BUILD_DIR)/My6502Executable
 
-TARGET := build
+# Compile example.cpp to example.o
+$(BUILD_DIR)/example.o: examples/example.cpp
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c examples/example.cpp -o $(BUILD_DIR)/example.o
 
+# Compile mos6502.cpp to mos6502.o
+$(BUILD_DIR)/mos6502.o: src/mos6502.cpp
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c src/mos6502.cpp -o $(BUILD_DIR)/mos6502.o
 
-
-workflow:
-	@echo "compiling for linux"
-	@$(CXX) -o ${TARGET}/mos6502 $(SOURCE_FILES)
-	@echo "compiling for windows"
-	@$(CXX) -o ${TARGET}/mos6502.exe $(SOURCE_FILES)
+# Clean build files
+clean:
+	rm -rf $(BUILD_DIR)
