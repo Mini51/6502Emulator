@@ -62,6 +62,10 @@ Memory is technically not part of the microprocessor but it is an essential part
 
 - **RAM** (0x0200 - 0xFFFF) - The RAM is used to store data and instructions that the microprocessor will use to perform operations. The ram is slower to access than the zero page but can store more data.
 
+- **ROM** (0xFFFA - 0xFFFF) - The ROM is used to store the reset vector and the interrupt vector.
+
+Another important section that depends on the usage of the microprocessor is the **I/O** section. This section is used to communicate with other devices such as the keyboard, screen, and other peripherals. The I/O section we will be using is the way that Ben Eater has set up his 6502 computer. The I/O section is from 0x6000 to 0x7FFF.
+
 ## Binary and Hexadecimal
 
 Binary and hexadecimal are the two number systems that are widley used computer science. Below is a brief over of each system:
@@ -108,6 +112,8 @@ Hexadecimal is a base-16 number system which means that it has 16 digits which a
 10 - 16 in decimal
 ...
 ```
+
+## [Next Section: Introduction to 6502 Assembly Language ➡️](introduction-to-6502-assembly-language.md)
 
 <hr>
 
