@@ -91,4 +91,51 @@ For a more detailed explanation of each addressing mode and instruction please r
 
 ## Writing the code
 
-Now that you have a basic understanding of the 6502 microprocessor and the instruction set we can start writing our first program. Below is the code that will write hello world to the screen.
+Now that you have a basic understanding of the 6502 microprocessor and the instruction set we can start writing our first program. Lets get started with something simple like transfering data around the registers and memory.
+
+```asm
+; First Program
+; This program will transfer data all around the registers and memory
+
+; First we will load the accumulator with some data
+LDA #$41
+
+; Next we will transfer the data from the accumulator to the X register
+TAX
+
+; Then we will transfer the data from the accumulator to the Y register
+TAY
+
+; Finally we will store the data in the Y register to the memory address $0200
+STY $0200
+
+; End of the program
+BRK
+```
+
+As you can see in this program we are transfering data between registers and memory. Lets run this program and lets see what happens
+
+## Running the program
+
+First we must assemle the program using VASM and then we can run the program using the 6502 emulator. To assemble the program run the following command:
+
+```bash
+vasm6502 -Fbin -dotdir first-program.asm -o example.bin
+```
+
+Next we will put this in the same directory as our compiled emulator, if you have not compiled the example project emulator please refer to the [README](../README.md) file. Once you have done that you can run the following command to run the program:
+
+```bash
+./build/example6502
+```
+
+If everything went well you should start seeing the following things occur:
+
+1. The accumulator will be loaded with the value 0x41
+2. The X register will be loaded with the value 0x41
+3. The Y register will be loaded with the value 0x41
+4. The value 0x41 will be stored in the memory address 0x0200 (This can not be checked in the emulator but in the real hardware you would be able to see this)
+
+## [Next Section: advanced-topics](advanced-topics.md)
+
+**If you have any questions, comments, or concerns, please feel free to reach out to me in the issues page** ❤️

@@ -115,6 +115,4 @@ Hexadecimal is a base-16 number system which means that it has 16 digits which a
 
 ## [Next Section: Introduction to 6502 Assembly Language ➡️](introduction-to-6502-assembly-language.md)
 
-<hr>
-
 **If you have any questions, comments, or concerns, please feel free to reach out to me in the issues page** ❤️
