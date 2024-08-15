@@ -136,6 +136,10 @@ If everything went well you should start seeing the following things occur:
 3. The Y register will be loaded with the value 0x41
 4. The value 0x41 will be stored in the memory address 0x0200 (This can not be checked in the emulator but in the real hardware you would be able to see this)
 
+## Conclusion
+
+In this section we covered some of the basic concepts of the 6502 microprocessor and wrote our first program. In the next section we will cover some more advanced topics that will allow you to write more complex programs for the 6502 microprocessor.
+
 ## [Next Section: advanced-topics](advanced-topics.md)
 
 **If you have any questions, comments, or concerns, please feel free to reach out to me in the issues page** ❤️

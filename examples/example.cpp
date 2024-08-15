@@ -26,23 +26,51 @@ int main()
     std::cout << "CPU reset." << std::endl;
 
     std::cout << "Starting CPU..." << std::endl;
-    std::cout << "Press Enter to step through the program." << std::endl;
+
+    std::cout << "Commands: \n"
+              << "enter: step" << std::endl
+              << "q: quit" << std::endl
+              << "n: NMI interrupt" << std::endl
+              << "i: IRQ interrupt" << std::endl;
 
     // Run the CPU
     while (true)
     {
-        std::cin.get();
+        // get the char from the user
+        char c = std::cin.get(); // Read input, including the enter key
 
-        // clear the screen
-        system("clear");
-        Cpu.step();
-        std::cout << "Registers after step: " << std::endl;
-        std::cout << "PC:" << "0x" << std::setw(4) << std::setfill('0') << std::hex << Cpu.getPC() << "\n"
-                  << "A:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getAC() << "\n"
-                  << "X:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getXR() << "\n"
-                  << "Y:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getYR() << "\n"
-                  << "SP:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getSP() << "\n"
-                  << "Status:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getSR() << std::endl;
-        std::cout << "Press Enter to continue..." << std::endl;
+        if (c == 'q')
+        {
+            std::cout << "Exiting..." << std::endl;
+            break;
+        }
+        else if (c == 'n')
+        {
+            Cpu.NMI();
+            std::cout << "NMI interrupt" << std::endl;
+        }
+        else if (c == 'i')
+        {
+            Cpu.IRQ();
+            std::cout << "IRQ interrupt" << std::endl;
+        }
+        else if (c == '\n') // Handle enter key
+        {
+            Cpu.step();
+            system("clear");
+            std::cout << "Registers after step: " << std::endl;
+            std::cout << "PC:" << "0x" << std::setw(4) << std::setfill('0') << std::hex << Cpu.getPC() << "\n"
+                      << "A:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getAC() << "\n"
+                      << "X:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getXR() << "\n"
+                      << "Y:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getYR() << "\n"
+                      << "SP:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getSP() << "\n"
+                      << "Status:" << "0x" << std::setw(2) << std::setfill('0') << std::hex << (int)Cpu.getSR() << std::endl;
+            std::cout << "===========================" << std::endl;
+            std::cout << "Commands: \n"
+                      << "enter: step" << std::endl
+                      << "q: quit" << std::endl
+                      << "n: NMI interrupt" << std::endl
+                      << "i: IRQ interrupt" << std::endl;
+        }
     }
 }
