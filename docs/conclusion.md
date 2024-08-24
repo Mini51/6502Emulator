@@ -1,0 +1,3 @@
+# Conclusion
+
+In conclusion, we have covered the basics as well as some advanced topics related to the 6502 microprocessor and assembly language. We also wrote our first program in assembly, along with exploring more advanced topics. The knowledge you have gained from this guide can be transferred to other processors with some minor adjustments. As you continue to learn more about computer science, particularly processor architecture, you will be able to write more complex programs and better understand how the underlying hardware works. If you have any questions, comments, or concerns, please feel free to reach out to me on the issues page ❤️
